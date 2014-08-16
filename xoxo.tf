@@ -3,9 +3,9 @@ provider "digitalocean" {
 }
 
 resource "digitalocean_droplet" "xoxo" {
-    image = "5506141"
+    image = "docker"
     name = "xoxo"
     region = "sfo1"
     size = "512mb"
-    ssh_keys = [236516]
+    ssh_keys = ["236516"]
 }
