@@ -7,5 +7,5 @@ resource "digitalocean_droplet" "xoxo" {
     name = "xoxo"
     region = "sfo1"
     size = "512mb"
-    ssh_keys = ["236516"]
+    ssh_keys = ["22490"]
 }
