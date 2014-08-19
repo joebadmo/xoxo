@@ -18,4 +18,5 @@ destroy:
 
 # ansible
 
+    $ export ANSIBLE_HOSTS=./ansible_hosts
     $ ansible-playbook playbook.yml
