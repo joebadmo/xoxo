@@ -11,4 +11,18 @@
       command: cp -r /root/.ssh /home/joe/.ssh
                creates=/home/joe/.ssh/authorized_keys
     - name: install nginx
-      apt: name=nginx update_cache=yes
+      apt: name=nginx
+           update_cache=yes
+      notify:
+        - start nginx
+    - name: get nginx.conf
+      template: src=./nginx.conf
+                dest=/etc/nginx/nginx.conf
+      notify:
+        - restart nginx
+    - name: ensure nginx is running
+      service: name=nginx
+               state=started
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
