@@ -10,11 +10,16 @@
     - name: copy root ssh key
       command: cp -r /root/.ssh /home/joe/.ssh
                creates=/home/joe/.ssh/authorized_keys
+    - name: install pip
+      apt: name=python-pip
+           update_cache=yes
+    - name: install docker-py
+      pip: name=docker-py
     - name: install nginx
       apt: name=nginx
            update_cache=yes
       notify:
-        - start nginx
+        - restart nginx
     - name: get nginx.conf
       template: src=./nginx.conf
                 dest=/etc/nginx/nginx.conf
@@ -23,6 +28,18 @@
     - name: ensure nginx is running
       service: name=nginx
                state=started
+    - name: get joe.xoxomoon.com
+      git: repo=https://github.com/joebadmo/joe.xoxomoon.com.git
+           dest=/home/joe/joe.xoxomoon.com
+           version="master"
+           accept_hostkey=yes
+    - name: build joe.xoxomoon.com docker image
+      docker_image: path="/home/joe/joe.xoxomoon.com"
+                    name="joebadmo/joe.xoxomoon.com"
+                    state=build
+    - name: run joe.xoxomoon.com docker image
+      docker: image="joebadmo/joe.xoxomoon.com"
+              ports=9000:9778
   handlers:
     - name: restart nginx
       service: name=nginx state=restarted
