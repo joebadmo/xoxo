@@ -15,8 +15,3 @@ apply:
 destroy:
 
     $ terraform plan -destroy -out terraform.tfplan; terraform apply terraform.tfplan
-
-# ansible
-
-    $ export ANSIBLE_HOSTS=./ansible_hosts
-    $ ansible-playbook playbook.yml
