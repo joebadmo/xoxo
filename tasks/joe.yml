@@ -1,0 +1,6 @@
+---
+- name: create joe user
+  user: name=joe
+        system=yes
+        groups="sudo"
+        password=$6$rounds=100000$YWoCUqN/MYPzTS5c$oUCt/Ko/eVNyIeKksHTNTTlurS3Wz0Q8Zt0mCMcPVOxtvpvPWe6Q5s.II3cvjZnsJ6cVyoWMTVg3WxvchhvKy.

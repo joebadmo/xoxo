@@ -2,44 +2,10 @@
 - hosts: all
   remote_user: root
   tasks:
-    - name: create joe user
-      user: name=joe
-            system=yes
-            groups="sudo"
-            password=$6$rounds=100000$YWoCUqN/MYPzTS5c$oUCt/Ko/eVNyIeKksHTNTTlurS3Wz0Q8Zt0mCMcPVOxtvpvPWe6Q5s.II3cvjZnsJ6cVyoWMTVg3WxvchhvKy.
-    - name: copy root ssh key
-      command: cp -r /root/.ssh /home/joe/.ssh
-               creates=/home/joe/.ssh/authorized_keys
-    - name: install pip
-      apt: name=python-pip
-           update_cache=yes
-    - name: install docker-py
-      pip: name=docker-py
-    - name: install nginx
-      apt: name=nginx
-           update_cache=yes
-      notify:
-        - restart nginx
-    - name: upload nginx.conf
-      template: src=./assets/nginx.conf
-                dest=/etc/nginx/nginx.conf
-      notify:
-        - restart nginx
-    - name: ensure nginx is running
-      service: name=nginx
-               state=started
-    - name: get joe.xoxomoon.com
-      git: repo=https://github.com/joebadmo/joe.xoxomoon.com.git
-           dest=/home/joe/joe.xoxomoon.com
-           version="master"
-           accept_hostkey=yes
-    - name: build joe.xoxomoon.com docker image
-      docker_image: path="/home/joe/joe.xoxomoon.com"
-                    name="joebadmo/joe.xoxomoon.com"
-                    state=build
-    - name: run joe.xoxomoon.com docker image
-      docker: image="joebadmo/joe.xoxomoon.com"
-              ports=9000:9778
+    - include: tasks/joe.yml
+    - include: tasks/ssh.yml
+    - include: tasks/docker.yml
+    - include: tasks/nginx.yml
+    - include: tasks/joe.xoxomoon.com.yml
   handlers:
-    - name: restart nginx
-      service: name=nginx state=restarted
+    - include: handlers/nginx.yml

@@ -1,0 +1,4 @@
+---
+- name: copy root ssh key
+  command: cp -r /root/.ssh /home/joe/.ssh
+           creates=/home/joe/.ssh/authorized_keys

@@ -1,0 +1,13 @@
+---
+- name: get joe.xoxomoon.com
+  git: repo=https://github.com/joebadmo/joe.xoxomoon.com.git
+       dest=/home/joe/joe.xoxomoon.com
+       version="master"
+       accept_hostkey=yes
+- name: build joe.xoxomoon.com docker image
+  docker_image: path="/home/joe/joe.xoxomoon.com"
+                name="joebadmo/joe.xoxomoon.com"
+                state=build
+- name: run joe.xoxomoon.com docker image
+  docker: image="joebadmo/joe.xoxomoon.com"
+          ports=9000:9778
