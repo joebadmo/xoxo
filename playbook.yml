@@ -7,5 +7,6 @@
     - include: tasks/docker.yml
     - include: tasks/nginx.yml
     - include: tasks/joe.xoxomoon.com.yml
+    - include: tasks/xoxomoon.com.yml
   handlers:
     - include: handlers/nginx.yml
