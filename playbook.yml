@@ -20,8 +20,8 @@
            update_cache=yes
       notify:
         - restart nginx
-    - name: get nginx.conf
-      template: src=./nginx.conf
+    - name: upload nginx.conf
+      template: src=./assets/nginx.conf
                 dest=/etc/nginx/nginx.conf
       notify:
         - restart nginx
