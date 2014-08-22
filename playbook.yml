@@ -2,6 +2,7 @@
 - hosts: all
   remote_user: root
   tasks:
+    - include: tasks/weechat.yml
     - include: tasks/joe.yml
     - include: tasks/ssh.yml
     - include: tasks/docker.yml
