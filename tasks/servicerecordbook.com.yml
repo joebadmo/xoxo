@@ -1,0 +1,6 @@
+---
+- name: get joe.xoxomoon.com
+  git: repo=https://github.com/joebadmo/servicerecordbook.com.git
+       dest=/home/joe/servicerecordbook.com
+       version="master"
+       accept_hostkey=yes

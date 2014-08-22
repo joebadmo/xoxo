@@ -8,5 +8,7 @@
     - include: tasks/nginx.yml
     - include: tasks/joe.xoxomoon.com.yml
     - include: tasks/xoxomoon.com.yml
+    - include: tasks/servicerecordbook.com.yml
+    - include: tasks/beverlymoon.com.yml
   handlers:
     - include: handlers/nginx.yml
