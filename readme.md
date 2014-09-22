@@ -14,4 +14,4 @@ destroy:
 
 # ssl
 
-before switching dns over, download ssl certs from https://sslmate.com/dashboard
+before switching dns over, download chained ssl cert and key from https://sslmate.com/dashboard
