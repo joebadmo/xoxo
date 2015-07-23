@@ -1,12 +1,18 @@
 ---
 - hosts: all
-  remote_user: root
+  remote_user: "{{ user }}"
+  roles:
+    - angstwad.docker_ubuntu
+    - bobbyrenwick.pip
   tasks:
-    - include: tasks/weechat.yml
     - include: tasks/joe.yml
+      when: not vagrant
     - include: tasks/ssh.yml
-    - include: tasks/docker.yml
+      when: not vagrant
     - include: tasks/nginx.yml
+      sudo: true
+    - include: tasks/git.yml
+      sudo: true
     - include: tasks/joe.xoxomoon.com.yml
     - include: tasks/xoxomoon.com.yml
     - include: tasks/servicerecordbook.com.yml

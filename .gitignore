@@ -1,2 +1,5 @@
 creds.tf
 ansible_hosts
+.vagrant
+joe.xoxomoon.com.chained.crt
+joe.xoxomoon.com.key

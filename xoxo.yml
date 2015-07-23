@@ -1,0 +1,6 @@
+---
+- hosts: all
+  vars:
+    user: root
+    vagrant: false
+  include: playbook.yml

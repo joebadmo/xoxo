@@ -1,4 +1,0 @@
----
-- name: install weechat
-  apt: name=weechat
-       update_cache=yes

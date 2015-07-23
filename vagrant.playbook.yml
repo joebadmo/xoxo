@@ -1,0 +1,8 @@
+---
+- hosts: all
+  vars:
+    user: vagrant
+    vagrant: true
+  roles:
+    - angstwad.docker_ubuntu
+  include: playbook.yml

@@ -4,11 +4,19 @@
        update_cache=yes
   notify:
     - restart nginx
+
+- name: upload vagrant nginx.conf
+  template: src=./assets/vagrant.nginx.conf
+            dest=/etc/nginx/nginx.conf
+  when: vagrant
+
 - name: upload nginx.conf
   template: src=./assets/nginx.conf
             dest=/etc/nginx/nginx.conf
+  when: not vagrant
   notify:
     - restart nginx
+
 - name: ensure nginx is running
   service: name=nginx
            state=started

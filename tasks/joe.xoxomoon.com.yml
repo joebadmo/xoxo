@@ -1,13 +1,22 @@
 ---
-- name: get joe.xoxomoon.com
-  git: repo=https://github.com/joebadmo/joe.xoxomoon.com.git
-       dest=/home/joe/joe.xoxomoon.com
-       version="master"
-       accept_hostkey=yes
-- name: build joe.xoxomoon.com docker image
-  docker_image: path="/home/joe/joe.xoxomoon.com"
-                name="joebadmo/joe.xoxomoon.com"
-                state=build
-- name: run joe.xoxomoon.com docker image
-  docker: image="joebadmo/joe.xoxomoon.com"
-          ports=9000:9778
+- name: docker-py hack
+  pip: name=docker-py state=absent
+
+- name: docker-py hack2
+  pip: name=docker-py version=1.2.3 state=present
+
+- name: run preterition-db docker image
+  docker:
+    image: joebadmo/preterition-db
+    name: db
+    env: POSTGRES_PASSWORD=foo
+    pull: "always"
+
+- name: run preterition docker image
+  docker:
+    pull: "always"
+    image: joebadmo/preterition
+    links:
+      - "db:db"
+    ports: "3000:3000"
+    pull: "always"

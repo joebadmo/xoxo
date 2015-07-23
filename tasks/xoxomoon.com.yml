@@ -1,13 +1,4 @@
 ---
-- name: get xoxomoon.com
-  git: repo=https://github.com/joebadmo/xoxomoon-docpad.git
-       dest=/home/joe/xoxomoon.com
-       version="master"
-       accept_hostkey=yes
-- name: build xoxomoon.com docker image
-  docker_image: path="/home/joe/xoxomoon.com"
-                name="joebadmo/xoxomoon.com"
-                state=build
 - name: run xoxomoon.com docker image
-  docker: image="joebadmo/xoxomoon.com"
+  docker: image="joebadmo/xoxomoon"
           ports=9001:9778
