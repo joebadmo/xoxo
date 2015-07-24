@@ -1,4 +1,5 @@
 creds.tf
+creds.yml
 ansible_hosts
 .vagrant
 joe.xoxomoon.com.chained.crt

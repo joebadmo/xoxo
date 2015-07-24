@@ -3,4 +3,6 @@
   vars:
     user: root
     vagrant: false
+  vars_files:
+    - creds.yml
   include: playbook.yml

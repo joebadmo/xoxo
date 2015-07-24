@@ -9,14 +9,29 @@
   docker:
     image: joebadmo/preterition-db
     name: db
-    env: POSTGRES_PASSWORD=foo
+    env: POSTGRES_PASSWORD={{ postgres_password }}
     pull: "always"
 
 - name: run preterition docker image
   docker:
+    name: preterition
     pull: "always"
     image: joebadmo/preterition
     links:
       - "db:db"
     ports: "3000:3000"
     pull: "always"
+
+- pip: name=httplib2 state=present
+
+- name: wait for preterition to start
+  action: shell /usr/bin/docker logs preterition
+  register: result
+  until: result.stderr.find("Started") != -1
+  retries: 5
+  delay: 30
+
+- name: populate preterition
+  uri:
+    url: http://localhost:3000/api/repo/joebadmo/joe.xoxomoon.com-content
+    method: POST
