@@ -3,6 +3,7 @@
   vars:
     user: vagrant
     vagrant: true
+    postgres_password: foo
   roles:
     - angstwad.docker_ubuntu
   include: playbook.yml
