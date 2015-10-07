@@ -3,6 +3,7 @@
   * joe.xoxomoon.com/ could save ~6.6 KB
   * style.css could save ~16.9 KB
   * main.js could save ~293 KB
+  * http://nginx.org/en/docs/http/ngx_http_gzip_module.html
 * Leverage browser caching (7) The following resources are missing a cache expiration. Resources that do not specify an expiration may not be cached by browsers:
   * joe.xoxomoon.com/
   * joe.xoxomoon.png
